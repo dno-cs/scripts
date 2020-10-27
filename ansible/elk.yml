@@ -1,0 +1,10 @@
+---
+- name: Install ELK
+  hosts: elk
+  become: True
+  tasks:
+
+  - name: Enable docker always
+    systemd:
+      name: docker
+      enabled: yes

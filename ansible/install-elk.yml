@@ -1,0 +1,49 @@
+---
+- name: Install ELK
+  hosts: elk
+  become: True
+  tasks:
+
+  - name: Increase Memory on VM
+    ansible.posix.sysctl:
+      name: vm.max_map_count
+      value: '262144'
+      state: present
+      reload: yes
+
+  - name: Increase virtual memmory on restart
+    shell: echo "vm.max_map_count=262144" >> /etc/systctl.conf
+
+  - name: Install docker.io
+    apt:
+      force_apt_get: yes
+      update_cache: yes
+      name: docker.io
+      state: present
+
+  - name: Install python3-pip pip3
+    apt:
+      force_apt_get: yes
+      name: python3-pip
+      state: present
+
+  - name: Install Docker python module
+    pip:
+      name: docker
+      state: present
+
+  - name: Install sebp/elk:761 container
+    docker_container:
+      name: elk
+      image: sebp/elk:761
+      state: started
+      restart_policy: always
+      published_ports: 
+        - "5601:5601"
+        - "9200:9200"
+        - "5044:5044"
+
+  - name: Enable docker always
+    systemd:
+      name: docker
+      enabled: yes

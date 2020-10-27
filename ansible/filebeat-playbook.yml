@@ -1,0 +1,30 @@
+---
+- name: Install Filebeat
+  hosts: webservers
+  become: true
+  tasks:
+
+  - name: download .deb file from artifacts.elastic.co
+    command: curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.6.1-amd64.deb
+
+  - name: install filebeat
+    command: sudo dpkg -i filebeat-7.6.1-amd64.deb
+
+  - name: copy filebeat-config to VM
+    copy:
+      src: /etc/ansible/files/filebeat-config.yml
+      dest: /etc/filebeat/filebeat.yml
+
+  - name: Enable Filebeat system
+    command: sudo filebeat modules enable system
+
+  - name: Setup Filebeat
+    command: sudo filebeat setup
+
+  - name: Start Service
+    command: sudo service filebeat start
+
+  - name: Enable filebeat always
+    systemd:
+      name: filebeat
+      enabled: yes

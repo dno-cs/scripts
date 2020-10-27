@@ -1,0 +1,15 @@
+---
+- name: Install Beats
+  hosts: webservers
+  become: True
+  tasks:
+
+  - name: Enable filebeat always
+    systemd:
+      name: filebeat
+      enabled: yes
+
+  - name: Enable metricbeat always
+    systemd:
+      name: metricbeat
+      enabled: yes
