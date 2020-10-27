@@ -2,17 +2,14 @@
 
 The files in this repository were used to configure the network depicted below.
 
-**Note**: The following image link needs to be updated. Replace `Network Diagram with Elk Sever.png` with the name of your diagram image file.  
-
 ![Network Diagram](images/NetworkDiagram.png)
-
-
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _____ file may be used to install only certain pieces of it, such as Filebeat.
 
-  ![Install-elk](ansible/install-elk.yml)
-  
+  - docker_dvwa-playbook.yml
   - install-elk.yml
+  - filebeat-playbook.yml
+
 
 This document contains the following details:
 - Description of the Topologu
@@ -49,7 +46,7 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the _____ machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
+Only the Jump Box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
 - _TODO: Add whitelisted IP addresses_
 
 Machines within the network can only be accessed by _____.
