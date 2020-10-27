@@ -4,12 +4,12 @@ The files in this repository were used to configure the network depicted below.
 
 **Note**: The following image link needs to be updated. Replace `Network Diagram with Elk Sever.png` with the name of your diagram image file.  
 
-![Network Diagram with Elk Sever]
+![Network Diagram with Elk Sever](images\NetworkDiagram.png)
 
-<img scr="images\Network Diagram with Elk Sever.png">
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _____ file may be used to install only certain pieces of it, such as Filebeat.
 
+  ![](ansible\install-elk.yml)
   - install-elk.yml
 
 This document contains the following details:
