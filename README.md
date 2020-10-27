@@ -4,7 +4,9 @@ The files in this repository were used to configure the network depicted below.
 
 **Note**: The following image link needs to be updated. Replace `Network Diagram with Elk Sever.png` with the name of your diagram image file.  
 
-![TODO: Update the path with the name of your diagram](Images/Network Diagram with Elk Sever.png)
+![test](images\Network Diagram with Elk Sever.png)
+
+![Network Diagram with Elk Sever](images\Network Diagram with Elk Sever.png)
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _____ file may be used to install only certain pieces of it, such as Filebeat.
 
@@ -33,12 +35,13 @@ Integrating an ELK server allows users to easily monitor the vulnerable VMs for 
 The configuration details of each machine may be found below.
 _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
-| Name     | Function | IP Address | Operating System |
-|----------|----------|------------|------------------|
-| Jump Box | Gateway  | 10.0.0.4   | Linux            |
-| Web-1    |          |            |                  |
-| Web-2    |          |            |                  |
-| Web-3    |          |            |                  |
+| Name     | Function  | IP Address | Operating System |
+|----------|-----------|------------|------------------|
+| Jump Box | Gateway   | 10.0.0.4   | Linux - Ubuntu   |
+| Web-1    | WebServer | 10.0.0.7   | Linux - Ubuntu   |
+| Web-2    | WebServer | 10.0.0.8   | Linux - Ubuntu   |
+| Web-3    | WebServer | 10.0.0.9   | Linux - Ubuntu   |
+
 
 ### Access Policies
 
