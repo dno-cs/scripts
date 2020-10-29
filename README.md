@@ -2,9 +2,9 @@
 
 The files in this repository were used to configure the network depicted below.
 
-![Network Diagram](images/NetworkDiagram.png)
+![Network Diagram](diagrams/NetworkDiagram.png)
 
-**Note**: The IP address 192.168.0.1 in the diagram above and where mentioned below should be replaced by your personal public IP address.
+**Note**: The IP address 192.168.0.1 in the diagram above and mentioned below should be replaced by your personal public IP address.
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the playbook file may be used to install only certain pieces of it, such as Filebeat.
 
@@ -42,11 +42,11 @@ The configuration details of each machine may be found below.
 
 | Name                 | Function   | Private IP Address | Operating System |
 |----------------------|------------|--------------------|------------------|
-| Jump-Box-Provisioner | Gateway    | 10.0.0.4           | Linux - Ubuntu   |
-| Web-1                | Web Server | 10.0.0.5           | Linux - Ubuntu   |
-| Web-2                | Web Server | 10.0.0.6           | Linux - Ubuntu   |
-| Web-3                | Web Server | 10.0.0.7           | Linux - Ubuntu   |
-| ELK-Server           | ELK Server | 10.1.0.4           | Linux - Ubuntu   |
+| Jump-Box-Provisioner | Gateway    | 10.0.0.4           | Linux            |
+| Web-1                | Web Server | 10.0.0.5           | Linux            |
+| Web-2                | Web Server | 10.0.0.6           | Linux            |
+| Web-3                | Web Server | 10.0.0.7           | Linux            |
+| ELK-Server           | ELK Server | 10.1.0.4           | Linux            |
 
 ### Access Policies
 
@@ -62,11 +62,11 @@ A summary of the access policies in place can be found in the table below.
 
 | Name                 | Publicly Accessible | Allowed IP Addresses |
 |----------------------|---------------------|----------------------|
-| Jump-Box-Provisioner | No                  | 192.168.0.1          |
-| Web-1                | Yes                 | 20.37.253.53         |
-| Web-2                | Yes                 | 20.37.253.53         |
-| Web-3                | Yes                 | 20.37.253.53         |
-| ELK-Server           | No                  | 192.168.0.1          |
+| Jump-Box-Provisioner | Yes                 | 192.168.0.1          |
+| Web-1                | No                  | 10.0.0.4             |
+| Web-2                | No                  | 10.0.0.4             |
+| Web-3                | No                  | 10.0.0.4             |
+| ELK-Server           | Yes                 | 192.168.0.1          ||
 
 
 ### Elk Configuration
@@ -96,9 +96,10 @@ We have installed the following Beats on these machines:
 - Metricbeats
 
  These Beats allow us to collect the following information from each machine:
-- 
+- Filebeats collects data about the file system, such as audit logs, server logs, gc logs, deprecation logs and slow logs, and sends the information to Elasticsearch. 
 
-_TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
+- Metricbeats collects metrics from the system and services running on the server, such as MySql, Nginx, System, Apache etc and sends the data to Elasticsearch.
+
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
