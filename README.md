@@ -105,8 +105,8 @@ We have installed the following Beats on these machines:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the _____ file to _____.
-- Update the /etc/ansible/hosts file to include [webservers] 
+- Copy the ![elk playbook](ansible/install-elk.yml) file to /etc/ansible/ .
+- Update the /etc/ansible/hosts file to include the [elk] host.  
 - Run the playbook, and navigate to [Kibana](http://20.188.226.118:5601/app/kibana) to check that the installation worked as expected.
 
 _TODO: Answer the following questions to fill in the blanks:_
