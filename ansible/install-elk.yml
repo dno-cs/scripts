@@ -1,6 +1,6 @@
 ---
 - name: Install ELK
-  hosts: elk
+  hosts: elkservers
   become: True
   tasks:
 

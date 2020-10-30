@@ -26,7 +26,7 @@ This document contains the following details:
   - Machines Being Monitored
 - How to Use the Ansible Build
 
-
+***
 ### Description of the Topology
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
@@ -48,6 +48,7 @@ The configuration details of each machine may be found below.
 | Web-3                | Web Server | 10.0.0.7           | Linux            |
 | ELK-Server           | ELK Server | 10.1.0.4           | Linux            |
 
+***
 ### Access Policies
 
 The machines on the internal network are not exposed to the public Internet. 
@@ -68,7 +69,7 @@ A summary of the access policies in place can be found in the table below.
 | Web-3                | No                  | 10.0.0.4             |
 | ELK-Server           | Yes                 | 192.168.0.1          ||
 
-
+***
 ### Elk Configuration
 
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
@@ -85,6 +86,7 @@ The following screenshot displays the result of running `docker ps` after succes
 
 ![](images/docker_ps_output.png)
 
+***
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
 - 10.0.0.5
@@ -100,28 +102,43 @@ We have installed the following Beats on these machines:
 
 - Metricbeats collects metrics from the system and services running on the server, such as MySql, Nginx, System, Apache etc and sends the data to Elasticsearch.
 
-
+***
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the [elk playbook](ansible/install-elk.yml) file to /etc/ansible/ .
-- Update the /etc/ansible/hosts file to include the [elk] host.  
-- Run the playbook, and navigate to [Kibana](http://20.188.226.118:5601/app/kibana) to check that the installation worked as expected.
+- Copy the [install-elk.yml](ansible/install-elk.yml) playbook file to `/etc/ansible/` .
+- Update the `/etc/ansible/hosts` file to include the elk server host.
 
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
 
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
 
-Download the install-elk.yml playbook with the following command from your ansible container:
-curl https://raw.githubusercontent.com/dno-cs/scripts/main/ansible/install-elk.yml > /etc/ansible/install-elk.yml
+- Run the playbook, and navigate to `http://[your.elk.server.public.ip]:5601/app/kibana` to check that the installation worked as expected.
 
-nano /etc/ansible/hosts
-add the following lines:
+***
+### Specific Commands
 
-[elk]
-10.1.0.4 ansible_python_interpreter=/usr/bin/python3
+
+- Download the install-elk.yml playbook with the following command from your ansible container:
+  ``` bash
+  $ curl https://raw.githubusercontent.com/dno-cs/scripts/main/ansible/install-elk.yml > /etc/ansible/install-elk.yml
+  ```
+
+ - Edit the hosts file:
+    ``` bash
+      $ nano /etc/ansible/hosts
+    ```
+   - Add the following lines to the hosts file:
+    ```bash
+      [elkservers]
+      10.1.0.4 ansible_python_interpreter=/usr/bin/python3 
+    ```
+ - Run the playbook to install ELK on the ELK server:
+    ``` bash
+      $ ansible-playbook install-elk.yml
+    ```
+
+ - Navigate to the ELK server to confirm ELK is up and running.
+
+***
+
 
