@@ -115,7 +115,7 @@ SSH into the control node and follow the steps below:
 - Run the playbook, and navigate to `http://[your.elk.server.public.ip]:5601/app/kibana` to check that the installation worked as expected.
 
 ***
-### Specific Commands
+### Installing ELK - Specific Commands
 
 
 - Download the install-elk.yml playbook with the following command from your ansible container:
@@ -140,5 +140,28 @@ SSH into the control node and follow the steps below:
  - Navigate to the ELK server to confirm ELK is up and running.
 
 ***
+### Installing Beats - Specific Commands
 
+- Download the filebeat-config.yml and metricbeat-config.yml playbooks to `/etc/ansible/files` with the following command from your ansible container:
+  ``` bash
+  $ curl https://raw.githubusercontent.com/dno-cs/scripts/main/ansible/filebeat-config.yml > /etc/ansible/files/filebeat-config.yml
 
+  $ curl https://raw.githubusercontent.com/dno-cs/scripts/main/ansible/metricbeat-config.yml > /etc/ansible/files/metricbeat-config.yml
+  ```
+- Edit the configuration files:
+    ``` bash
+      $ nano /etc/ansible/file/filebeat-config.yaml
+    ```
+   - Edit lines 1105 and 1806 and replace the IP address with the private IP address of your ELK server.:
+    ```bash
+         hosts: ["10.1.0.4:9200"]     #line 1105
+         host: "10.1.0.4:5601"        #line 1806
+    ```
+    ``` bash
+      $ nano /etc/ansible/file/metricbeat-config.yaml
+    ```
+   - Edit lines 62 and 95 and replace the IP address with the private IP address of your ELK server.:
+    ```bash
+          host: "10.1.0.4:5601"     #line 62
+          host: "10.1.0.4:9200"     #line 95
+    ```
