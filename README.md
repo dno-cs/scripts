@@ -105,7 +105,7 @@ We have installed the following Beats on these machines:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the ![ELK playbook](ansible/install-elk.yml) file to /etc/ansible/ .
+- Copy the [elk playbook](ansible/install-elk.yml) file to /etc/ansible/ .
 - Update the /etc/ansible/hosts file to include the [elk] host.  
 - Run the playbook, and navigate to [Kibana](http://20.188.226.118:5601/app/kibana) to check that the installation worked as expected.
 
@@ -115,3 +115,13 @@ _TODO: Answer the following questions to fill in the blanks:_
 - _Which URL do you navigate to in order to check that the ELK server is running?
 
 _As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+
+Download the install-elk.yml playbook with the following command from your ansible container:
+curl https://raw.githubusercontent.com/dno-cs/scripts/main/ansible/install-elk.yml > /etc/ansible/install-elk.yml
+
+nano /etc/ansible/hosts
+add the following lines:
+
+[elk]
+10.1.0.4 ansible_python_interpreter=/usr/bin/python3
+
