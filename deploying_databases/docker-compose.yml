@@ -1,0 +1,44 @@
+version: "3.3"
+
+services:
+  frontend:
+    container_name: frontend
+    image: trafex/alpine-nginx-php7
+    ports:
+      - 10005:8080
+    volumes:
+      - /home/sysadmin/Cybersecurity-Lesson-Plans/14-Web_Dev/deploying_databases/app/:/var/www/html
+    networks:
+      app-net:
+        ipv4_address: 192.168.25.6
+
+  db:
+    container_name: activitydb
+    image: mariadb:10.5.1
+    restart: always
+    environment:
+      MYSQL_INITDB_SKIP_TZINFO: 1
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: goodcorpdb
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: 123456
+    #ports:
+    #  - '3306:3306'
+    #expose:
+      # Opens port 3306 on the container
+    #  - '3306'
+    volumes:
+      - /home/sysadmin/Cybersecurity-Lesson-Plans/14-Web_Dev/deploying_databases/queries/:/home
+      - db:/var/lib/mysql
+    networks:
+      app-net:
+        ipv4_address: 192.168.25.7
+networks:
+  app-net:
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.168.25.0/24"
+volumes:
+  ui:
+  db:
